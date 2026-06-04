@@ -1,0 +1,5 @@
+#type system_suspend, domain, coredomain, system_suspend_server, system_suspend_internal_server;
+
+#allow system_suspend sysfs:dir read;
+#allow system_suspend sysfs_batteryinfo:dir read;
+

@@ -1,0 +1,10 @@
+type mtk_hal_audio, domain;
+type mtk_hal_audio_exec, exec_type, vendor_file_type, file_type;
+
+get_prop(mtk_hal_audio, vendor_dirac_prop)
+set_prop(mtk_hal_audio, vendor_dirac_prop)
+
+set_prop(mtk_hal_audio, vendor_audio_tunning_prop)
+allow mtk_hal_audio sysfs_sia81xx:file r_file_perms;
+allow mtk_hal_audio self:process execmem;
+

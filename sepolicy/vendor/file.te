@@ -1,0 +1,54 @@
+type latency_device, dev_type;
+type proc_fastchg_fw, fs_type, proc_type;
+type proc_fingerprint, fs_type, proc_type;
+type proc_nfc_chipset, fs_type, proc_type;
+type proc_sensor_feature, fs_type, proc_type;
+type sysfs_fingerprint, fs_type, sysfs_type;
+type sysfs_mmc_host, fs_type, sysfs_type;
+type sysfs_mtk_cpufreq, fs_type, sysfs_type;
+type sysfs_otg_switch, fs_type, sysfs_type;
+type sysfs_sia81xx, fs_type, sysfs_type;
+type sysfs_virtual_sensor, fs_type, sysfs_type;
+type sysfs_mag, fs_type, sysfs_type;
+type sensor_mag_device, dev_type;
+type vendor_persist_camera_file, file_type;
+
+type vendor_audio_prop, property_type;
+type sysfs_usb_supply, sysfs_type, fs_type;
+type sysfs_battery_supply, sysfs_type, fs_type;
+type sysfs_scharge, sysfs_type, fs_type;
+type proc_touchpanel, fs_type;
+type oppo_debug_prop, property_type, mtk_core_property_type;
+type sysfs_oppo_display, sysfs_type, fs_type;
+type sysfs_livedisplay, sysfs_type, fs_type;
+
+type wmt_prop, property_type, mtk_core_property_type;
+type audiohal_prop, property_type, mtk_core_property_type;
+type tel_switch_prop, property_type, mtk_core_property_type;
+type mtk_default_prop, property_type, mtk_core_property_type;
+
+type mtk_camera_prop, property_type, mtk_core_property_type;
+type sysfs_fpc_proximity, sysfs_type, fs_type;
+type sysfs_oem, sysfs_type, fs_type;
+type sys_battery_info, fs_type, sysfs_type;
+
+
+type vendor_dirac_prop, property_type;
+
+
+# Display
+type vendor_sysfs_graphics, fs_type, sysfs_type;
+type vendor_proc_display, fs_type, proc_type;
+
+# Performance
+type proc_sched_stune, fs_type, proc_type;
+type proc_sched_assist, fs_type, proc_type;
+type sysfs_mtk_gpufreq, fs_type, sysfs_type;
+
+# PPS
+type pps_socket, file_type;
+
+
+
+
+

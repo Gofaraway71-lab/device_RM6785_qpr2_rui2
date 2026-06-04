@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MediaCodecs>
+    <Decoders>
+        <MediaCodec name="OMX.MTK.VIDEO.DECODER.AVC" type="video/avc" >
+            <Alias name="OMX.google.android.index.supportsDynamicColorAspects" />
+            <Limit name="size" min="32x32" max="1920x1088" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="1-244800" />
+            <Limit name="bitrate" range="1-40000000" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.MTK.VIDEO.DECODER.HEVC" type="video/hevc" >
+            <Limit name="size" min="32x32" max="3840x2160" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="1-972000" />
+            <Limit name="bitrate" range="1-80000000" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.MTK.VIDEO.DECODER.VP9" type="video/x-vnd.on2.vp9" >
+            <Limit name="size" min="32x32" max="3840x2160" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="bitrate" range="1-80000000" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.MTK.VIDEO.DECODER.MPEG4" type="video/mp4v-es" >
+            <Limit name="size" min="32x32" max="1280x720" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="bitrate" range="1-10000000" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.MTK.VIDEO.DECODER.H263" type="video/3gpp" >
+            <Limit name="size" min="32x32" max="352x288" />
+            <Limit name="alignment" value="4x4" />
+            <Limit name="bitrate" range="1-2000000" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+    </Decoders>
+    <Encoders>
+        <MediaCodec name="OMX.MTK.VIDEO.ENCODER.AVC" type="video/avc" >
+            <Limit name="size" min="32x32" max="1920x1088" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="1-244800" />
+            <Limit name="bitrate" range="1-40000000" />
+            <Limit name="concurrent-instances" max="8" />
+        </MediaCodec>
+        <MediaCodec name="OMX.MTK.VIDEO.ENCODER.HEVC" type="video/hevc" >
+            <Limit name="size" min="32x32" max="3840x2160" />
+            <Limit name="alignment" value="16x16" />
+            <Limit name="bitrate" range="1-80000000" />
+            <Limit name="concurrent-instances" max="4" />
+        </MediaCodec>
+    </Encoders>
+</MediaCodecs>

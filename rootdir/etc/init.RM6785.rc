@@ -1,0 +1,121 @@
+on init
+    # Update fastcharge firmware
+    chown system system /proc/fastchg_fw_update
+    write /proc/fastchg_fw_update 1
+
+on early-boot
+    # Dolby
+    mkdir /data/vendor/dolby 0770 media media
+    mkdir /data/vendor/multimedia 0775 system system
+
+on fs
+    mount_all /vendor/etc/fstab.mt6785 --early
+    mount_all /vendor/etc/fstab.mt6785 --late
+
+    # Update touchpanel firmware in case we ship newer firmware in /odm
+    write /proc/touchpanel/tp_fw_update 0
+
+on post-fs-data
+    # VideoCodec
+    chmod 0666 /dev/video0
+    chmod 0666 /dev/video1
+
+    # AudioDump
+    mkdir /data/vendor/audiohal 0771 system audio
+    mkdir /data/vendor/audiohal/audio_param 0771 system audio
+
+    # Vibrator
+    write /sys/class/leds/vibrator/ram_update 1
+
+on boot
+    # Power HAL
+    setprop vendor.powerhal.init 1
+
+    # Touchpanel
+    chown system system /proc/touchpanel/tp_fw_update
+    chown system system /proc/touchpanel/oplus_tp_limit_enable
+    chown system system /proc/touchpanel/oplus_tp_direction
+    chown system system /proc/touchpanel/double_tap_enable
+    chown system system /proc/touchpanel/coordinate
+    chown system system /proc/touchpanel/game_switch_enable
+    chown system system /proc/touchpanel/fp_enable
+    chown system system /proc/touchpanel/baseline_test
+    chown system system /proc/touchpanel/kernel_grip_handle
+    chown system system /proc/touchpanel/curved_size
+    chown system system /proc/touchpanel/charge_detect
+    chown system system /proc/touchpanel/wireless_charge_detect
+
+    # tfa98xx firmware update
+    write /proc/tfa98xx/oppo_tfa98xx_fw_update 1
+    chown system system /proc/tfa98xx/oppo_tfa98xx_fw_update
+
+    # Power Supply
+    chown system system /sys/class/power_supply/battery/ship_mode
+    chown system system /sys/class/power_supply/battery/short_c_batt_in_idle
+    chown system system /sys/class/power_supply/battery/short_c_batt_update_change
+    chown system system /sys/class/power_supply/battery/short_c_hw_feature
+    chown system system /sys/class/power_supply/battery/short_ic_volt_thresh
+    chown system system /sys/class/power_supply/battery/short_ic_otp_status
+    chown system system /sys/class/power_supply/battery/short_c_batt_limit_chg
+    chown system system /sys/class/power_supply/battery/short_c_batt_limit_rechg
+    chown system system /sys/class/power_supply/battery/mmi_charging_enable
+    chown system system /sys/class/power_supply/battery/cool_down
+    chown system system /sys/class/power_supply/battery/em_mode
+    chown system system /sys/class/power_supply/usb/water_detect_feature
+
+    chown system system /proc/tbatt_pwroff
+
+on property:sys.boot_completed=1
+    chown system system /sys/devices/system/cpu/cpufreq/mtk/lcluster_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/mtk/lcluster_min_freq
+
+    # Disable edge limit control interface
+    write /proc/touchpanel/oplus_tp_limit_enable 0
+
+    # Enable oppo touchpanel direction
+    write /proc/touchpanel/oplus_tp_direction 1
+
+    # OTG
+    write /sys/class/power_supply/usb/otg_switch 1
+
+    # Enable suspend to RAM
+    write /sys/power/mem_sleep "deep"
+
+on property:persist.vendor.radio.port_index=""
+    setprop sys.usb.config adb
+
+service vendor.media.omx /vendor/bin/hw/android.hardware.media.omx@1.0-service
+    override
+    class main
+    user mediacodec
+    group camera drmrpc mediadrm system
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
+
+on property:ro.vendor.nfc_device=1
+    setprop ro.boot.product.hardware.sku nfc
+
+on property:ro.boot.product.hardware.sku=nfc
+    start vendor.nfc_hal_service
+
+service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service
+    override
+    disabled
+    class hal
+    user nfc
+    group nfc
+
+service vendor.charger /system/bin/charger
+    class charger
+    user system
+    group system graphics wakelock input
+    capabilities SYS_BOOT
+    seclabel u:r:charger:s0
+
+on property:ro.vendor.device=*
+    setprop bluetooth.device.default_name ${ro.vendor.device}
+
+# Restrict access on this node
+on property:sys.boot_completed=1
+    # Only owner can acces this node
+    chmod 440 /proc/net/unix

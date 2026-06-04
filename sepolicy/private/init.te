@@ -1,0 +1,14 @@
+# libinit
+allow init proc_oppo_operator:file r_file_perms;
+
+
+allow init property_type:file { append create getattr map open read relabelto rename setattr unlink write };
+
+# Allow init to mount vendor configs
+allow init vendor_configs_file:dir mounton;
+allow init vendor_configs_file:file mounton;
+
+# Allow init to change owner of /proc/cpufreq
+allow init proc_cpufreq:file { w_file_perms setattr };
+
+

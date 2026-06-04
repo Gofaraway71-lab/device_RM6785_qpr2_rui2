@@ -1,0 +1,2 @@
+type devicesettings_app, domain;
+app_domain(devicesettings_app)

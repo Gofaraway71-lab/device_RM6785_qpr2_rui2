@@ -1,0 +1,5 @@
+type proc_oppo_operator, fs_type, proc_type;
+type sysfs_mtk_leds, fs_type, sysfs_type;
+type proc_tp, fs_type, proc_type;
+type proc_gpufreq, fs_type, proc_type;
+

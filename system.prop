@@ -1,0 +1,34 @@
+# Dex2oat
+dalvik.vm.dex2oat64.enabled=true
+
+# Filesystem
+fs_mgr.overlayfs.prefer_cache_backing_storage=true
+
+# Display
+debug.hwui.trace_gpu_resources=false
+
+# IMS
+persist.dbg.volte_avail_ovr=1
+
+# LMKD
+ro.config.low_ram=false
+ro.lmk.log_stats=true
+
+# ScrollOptimizer
+persist.sys.perf.scroll_opt = true
+persist.sys.perf.scroll_opt.heavy_app = 1
+
+# InfinityX phoneinfo props
+ro.infinity.battery=5000 mAh
+ro.infinity.camera=48MP + 8MP + 2MP + 2MP
+ro.infinity.display=1080 x 2400, 90Hz
+ro.infinity.soc=Mediatek Helio G95
+
+ro.mist.display=1080 x 2400, 90Hz
+ro.mist.battery=5000 mAh
+ro.mist.soc=Mediatek Helio G95
+ro.mist.camera=48MP + 8MP + 2MP + 2MP
+ro.mist.front=16MP
+ro.mist.platform=mt6785
+ro.mist.screen=6.67' IPS LCD
+ro.mist.device.name=RM6785

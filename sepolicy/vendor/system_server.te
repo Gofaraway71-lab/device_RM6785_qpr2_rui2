@@ -1,0 +1,4 @@
+get_prop(system_server, vendor_device_prop)
+
+allow system_server sys_battery_info:dir read;
+

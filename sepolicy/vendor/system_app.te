@@ -1,0 +1,47 @@
+# Allow system_app to read /proc/pagetypeinfo
+allow system_app proc_pagetypeinfo:file r_file_perms;
+
+allow system_app proc_tp:dir search;
+allow system_app proc_tp:file { getattr open read write };;
+
+allow system_app sysfs_usb_supply:dir search;
+allow system_app sysfs_usb_supply:file { getattr open read write };
+
+allow system_app sysfs_battery_supply:dir search;
+allow system_app sysfs_battery_supply:file { getattr open read };
+
+allow system_app proc_touchpanel:file { read write open getattr setattr };
+
+allow system_app vendor_default_prop:file { map getattr };
+get_prop(system_app,oppo_debug_prop)
+
+allow system_app sysfs_batteryinfo:dir {search};
+allow system_app sysfs_batteryinfo:file { getattr setattr open read write};
+
+# Allow system_app to read fps info node
+allow system_app sysfs_fps:dir search;
+allow system_app sysfs_fps:file rw_file_perms;
+
+# DeviceSettings
+
+allow system_app sysfs_oppo_display:dir search;
+allow system_app sysfs_oppo_display:file { getattr open read write };
+
+allow system_app proc_vmallocinfo:file r_file_perms;
+
+# Allow system_app to access zram sysfs nodes
+allow system_app sysfs_zram:dir search;
+allow system_app sysfs_zram:file rw_file_perms;
+allow system_app sysfs_zram:dir  { search };
+
+# OTG usb
+allow system_app sysfs_otg_switch:dir search;
+allow system_app sysfs_otg_switch:file { getattr open read write };
+
+# FM Radio
+get_prop(system_app, vendor_mtk_wmt_prop)
+get_prop(system_app, vendor_mtk_default_prop)
+
+allow system_app sysfs:dir search;
+allow system_app sysfs:file { getattr open read write };
+

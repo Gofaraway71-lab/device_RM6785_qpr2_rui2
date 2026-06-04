@@ -1,0 +1,6 @@
+allow rild default_prop:file read;
+allow rild metadata_file:dir search;
+allow rild proc:file read;
+allow rild proc_oppo_operator:file read;
+allow rild vendor_default_prop:property_service set;
+
