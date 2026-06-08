@@ -70,6 +70,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    vendor.mediatek.hardware.bluetooth.audio@2.1.vendor
 
+# Bypass Lock State for Kaeru
+$(call soong_config_set_bool,fastbootd,bypass_lock_state,true)
+
 # Camera
 PRODUCT_PACKAGES += \
     Aperture \
